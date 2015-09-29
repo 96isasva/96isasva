@@ -42,12 +42,30 @@ def autogrow(crop,days):
         light = random.randint(1,10)
         water = random.randint(1,10)
         crop.grow(light,water)
+        
+class potato(Crop):
+    def __init__(self):
+        super().__init__(1,3,6)
+    
+    def grow(self,light,water):
+        if light >= self._light_need and water >= self._water_need:
+            if self._status == "seeding" and water > self._water_need:
+                self._growth += self._growth_rate * 1.5
+            elif self._status == "Young" and water > self._water_need:
+                self._growth += self._growth_rate * 1.25
+            else:
+                self._growth += self._growth_rate
+        self._days_growing += 1
+        self._update_status()
+    
 
 def main():
     new_crop = Crop(1,5,9)
     autogrow(new_crop,30)
     print(new_crop._status)
     print(new_crop.report())
+    potato_crop = potato()
+    print(potato_crop.report)
 
     
 if __name__ == "__main__":
