@@ -57,7 +57,7 @@ class potato(Crop):
                 self._growth += self._growth_rate
         self._days_growing += 1
         self._update_status()
-    
+        
 
 def main():
     new_crop = Crop(1,5,9)
