@@ -39,7 +39,57 @@ class Field:
         animal_report = []
         for crop in self._crops:
             crop_report.append(crop.report())
-        
+            
+    def report_need(self):
+        food = 0
+        light = 0
+        water = 0
+        for crop in self._crops:
+            needs = crop.needs()
+            if needs["light need"] > light:
+                light = needs["light need"]
+            if needs["water need"] > water:
+                water= needs["water need"]
+        for animal in self._animals:
+            needs = animal.needs()
+            food += needs["food need"]
+            if needs["water need"] > water:
+                water = needs["water_need"]
+        return {"food":food,"light":light,"water":water}
+            
+ 
+def auto_grow(field,days):
+    for day in range(days):
+        light = random.randint(1,10)
+        water = random.randint(1,10)
+        food = random.randint(1,100)
+        field.grow(light,food,water)
+
+def manual_grow(field):
+    valid = False
+    while not valid:
+        try:
+            light = int(input("please enter a light value (1-10: "))
+            if 1 <= light <= 10:
+                vaild = True
+            else:
+                print("Value entered in not valid - please enter a value between 1 & 10")
+        except ValueError:
+            print("Value enterd not valid")
+            
+        valid = False
+        while not valid:
+            try:
+                food = int(input("please enter a food value"))
+                if 1 <= food <= 100:
+                    valid = True
+                else:
+                    print("Value entered not valid")
+            except ValueError:
+                print("Value entered not valid")
+                
+        field.grow(ligt,food,water)
+       
 def display_crops(crop_list):
     print()
     print("The following crops are in this field:")
@@ -96,7 +146,10 @@ def main():
     print(new_field._crops)
     remove_animals_from_field(new_field)
     print(new_field._animals)
-    
+    report = new_field.report_needs()
+    print report()
+    manual_grow(new_field.report_contents())
+    print new_field.report_contents()
 
     
 if __name__ == "__main__":
