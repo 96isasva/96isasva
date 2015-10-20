@@ -135,22 +135,136 @@ def harvest_animal_from_field(field):
     selected_animal = select_animal(len(field._animals))
     return field.harvest_animal(selected_animal)
     
+def display_crop_menu():
+    print()
+    print("which crop would you like to add?")
+    print()
+    print("1.potato")
+    print("2.wheat")
+    print()
+    print("0. i dont want to add a new crop")
+    print()
+    print("please select an option")
+
+def display_animal_menu():
+    print()
+    print("which animal would you like to add?")
+    print()
+    print("1.cow")
+    print("2.sheep")
+    print()
+    print("0. i dont want to add a new animal")
+    print()
+    print("please select an option")
     
+def display_main_menu():
+    print()
+    print("1. Plant a new crop")
+    print("2. Harvest a crop")
+    print()
+    print("3. Add an animal")
+    print("4. Remove an animal")
+    print()
+    print("5. Grow field manuallt over 1 day")
+    print("6. Grow field automaticlly over 30days)
+    print()
+    print("7. Report field status")
+    print()
+    print("8. Exit test program")
+    print()
+    print("Please select an option from the above menu")
+    
+def get_menu_choice(lower,upper):
+    valid = False
+    while not valid:
+        try:
+            choice = int(input("Option selected: "))
+            if lower <= choice <= upper:
+                valid = True
+            else:
+                print("Please enter a valid option")
+            except ValueError:
+                print("Please enter a valid option")
+    return choice
+    
+def plant_crop_in_field(field):
+    display_crop_menu()
+    choice = get_menu_choice(0,2)
+    if choice == 1:
+        if field.plant_crop(Potato()):
+            print()
+            print("Crop planted")
+            print()
+        else:
+            print()
+            print("Field is full - potato not planted")
+            print()
+    elif choice == 2:
+        if field.plant_crop(Wheat()):
+            print()
+            print("Crop planted")
+            print()
+        else:
+            print()
+            print("Field is full - wheat not planted")
+            print()
+
+def add_animal_to_field(field):
+    display_animal_menu()
+    choice = get_menu_choice(0,2)
+    if choice == 1:
+        if field.add_animal(Cow(name)):
+            print()
+            print("Cow added")
+            print()
+        else:
+            print()
+            print("Field is full - cow not added")
+            print()
+    elif choice == 2:
+        if field.add_animal(Sheep(name)):
+            print()
+            print("Sheep added")
+            print()
+        else:
+            print()
+            print("Field is full - sheep not added")
+            print()
+            
+def manage_field(field):
+    print("This is the field mangement program")
+    print()
+    exit = Flase
+    while not exit:
+        display_main_menu()
+        option = get_menu_choice(0,7)
+        print()
+        if option == 1:
+            plant_crop_in_field(field)
+        elif option == 2:
+            remove_crop = harvest_crop_from_field(field)
+            print("You removed the crop: {0}".format(removed_crop))
+        elif option == 3:
+            add_animal_to_field(field)
+        elif option == 4:
+            removed_animal = remove_animal_from_field(field)
+            print("You removed the animal: {0}".format(removed_animal))
+        elif option == 5:
+            manual_grow(field)
+        elif option == 6:
+            auto_grow(field,30)
+        elif option == 7:
+            print(field.report:contents())
+            print()
+        elif option == 0:
+            exit = True
+            print()
+    print("Thank you for using the field management program")
+        
+                        
+
 def main():
     new_field = Field(5,2)
-    new_field.plant_crop(wheat())
-    new_field.plant_crop(potato())
-    new_field.add_animal(cow("Jim"))
-    new_field.add_animal(sheep("Shaun"))
-    harvest_crop_from_field(new_field)
-    print(new_field._crops)
-    remove_animals_from_field(new_field)
-    print(new_field._animals)
-    report = new_field.report_needs()
-    print report()
-    manual_grow(new_field.report_contents())
-    print new_field.report_contents()
-
-    
+    manage_field(new_field)
 if __name__ == "__main__":
     main()
