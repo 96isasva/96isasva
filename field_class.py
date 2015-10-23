@@ -97,6 +97,7 @@ def display_crops(crop_list):
     for crop in crop_list:
         print("{0:>2}. {1}".format(pos,crop.report())
     pos += 1
+
 def display_animals(animal_list):
     print()
     print ("The following animals are in this field: ")
