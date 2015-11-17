@@ -7,15 +7,14 @@ Created on Tue Nov  3 08:55:47 2015
 import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-import model
 
 
 
-class MyProgram(QMainWindow):
-    
+
+class Exam(QMainWindow):
     def __init__(self, parent=None):  
-        super(MyProgram, self).__init__()
-        self.setWindowTitle("MyProgram")
+        super(Exam, self).__init__()
+        self.setWindowTitle("Exam")
         self.initUI()
     
     def initUI(self):
@@ -24,7 +23,9 @@ class MyProgram(QMainWindow):
         
     def run(self):
         self.show()
-        sys.exit()
+        sys.exit(app.exec_())
         
-MyProgram().run()
+
 app = QApplication(sys.argv)
+Exam().run()
+
