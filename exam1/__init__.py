@@ -23,39 +23,75 @@ class Exam(QMainWindow):
         self.layout = QVBoxLayout()
         self.form_layout = QFormLayout()
         
-        self.inputs = QTextEdit(self)
-        self.inputs.setReadOnly(True)
-        self.form_layout.addRow('Inputs: ',self.inputs)
+        self.resize(325,375)
+        
+
+        self.nametext = QLabel('namn :',self)
+        self.nametext.move(50,50)
         
         self.name = QLineEdit(self)
         self.name.setMinimumWidth(130)
-        self.form_layout.addRow('Input: ', self.name)
-        self.name.move(50,50)
+        self.form_layout.addRow('namn: ', self.name)
+        self.name.move(100,50)
         #self.led.returnPressed.connect()
         
-        self.inputs = QTextEdit(self)
-        self.inputs.setReadOnly(True)
-        self.form_layout.addRow('Inputs: ',self.inputs)
+        self.weighttext = QLabel('vikt : ',self)
+        self.weighttext.move(50,100)        
         
-        self.name = QLineEdit(self)
-        self.name.setMinimumWidth(130)
-        self.form_layout.addRow('Input: ', self.name)
-        self.name.move(300,50)
+        self.weight = QLineEdit(self)
+        self.weight.setMinimumWidth(130)
+        self.form_layout.addRow('vikt: ', self.name)
+        self.weight.move(100,100)
+        
+        self.colortext = QLabel('färg : ',self)
+        self.colortext.move(50,150)
+        
+        self.color = QLineEdit(self)
+        self.color.setMinimumWidth(130)
+        self.form_layout.addRow('färg: ', self.name)
+        self.color.move(100,150)
+        
+        self.fordon = QComboBox(self)
+        self.fordon.addItem("Välj fordon:")
+        self.fordon.addItem("Car")
+        self.fordon.addItem("buss")
+        self.fordon.move(115,200)
+        self.fordon.activated.connect(self.aktiverad) 
+        #self.led.returnPressed.connect()
+        
+   #def aktiverad(self):
+   #     self.fordon = QComboBox(self)
+    #    self.fordon.addItem("Välj fordon:")
+     #   self.fordon.addItem("Bil")
+      #  self.fordon.addItem("buss")
+       # self.fordon.move(30,30)
         #self.led.returnPressed.connect()
         
         
         self.btn_ok = QPushButton("ok",self)
-        self.btn_ok.move(150,150)
+        self.btn_ok.move(115,250)
         #self.btn_ok.clicked.connect()
         
         self.btn_clear = QPushButton("rensa",self)
-        self.btn_clear.move(100,100)
-        #self.btn_ok.clicked.connect()
-        
+        self.btn_clear.move(115,300)
+        self.btn_clear.clicked.connect(self.clear)
+          
+    def aktiverad(self):
+        self.fordon2 = QComboBox(self)
+        self.fordon2.addItem("Välj fordon:")
+        self.fordon2.addItem("Bil")
+        self.fordon2.addItem("buss")
+        self.fordon2.move(30,30)
+        self.colortext.move(10,10)
+        print("TEST")
+        self.update()
+        #self.led.returnPressed.connect()
 
         
-        
-        
+    def clear(self):
+        self.name.setText("")
+        self.weight.setText("")
+        self.color.setText("")
         
         
     def run(self):
