@@ -33,7 +33,6 @@ class Exam(QMainWindow):
         self.name.setMinimumWidth(130)
         self.form_layout.addRow('namn: ', self.name)
         self.name.move(100,50)
-        #self.led.returnPressed.connect()
         
         self.weighttext = QLabel('vikt : ',self)
         self.weighttext.move(50,100)        
@@ -62,24 +61,19 @@ class Exam(QMainWindow):
         self.form_layout.addRow('färg: ', self.name)
         self.msgbox.move(250,50)
         self.msgbox.resize(150,300)
-        #self.led.returnPressed.connect()
+        self.msgbox.setReadOnly(True)
         
-   #def aktiverad(self):
-   #     self.fordon = QComboBox(self)
-    #    self.fordon.addItem("Välj fordon:")
-     #   self.fordon.addItem("Bil")
-      #  self.fordon.addItem("buss")
-       # self.fordon.move(30,30)
-        #self.led.returnPressed.connect()
         
         
         self.btn_ok = QPushButton("ok",self)
         self.btn_ok.move(115,250)
-        #self.btn_ok.clicked.connect()
+        #self.btn_ok.clicked.connect(self.btn_clicked)
         
         self.btn_clear = QPushButton("rensa",self)
         self.btn_clear.move(115,300)
         self.btn_clear.clicked.connect(self.clear)
+        
+        
           
     def aktiverad(self):
         self.test = QComboBox(self)
@@ -90,13 +84,14 @@ class Exam(QMainWindow):
         self.colortext.move(10,10)
         print("TEST")
         self.update()
-        #self.led.returnPressed.connect()
 
         
     def clear(self):
         self.name.setText("")
         self.weight.setText("")
         self.color.setText("")
+        
+    #def btn_clicked(self):
         
         
     def run(self):
