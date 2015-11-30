@@ -10,7 +10,7 @@ from PyQt4.QtGui import *
 
 
 
-
+0
 class Exam(QMainWindow):
     def __init__(self, parent=None):  
         super(Exam, self).__init__()
@@ -18,12 +18,12 @@ class Exam(QMainWindow):
         self.initUI()
     
     def initUI(self):
+        #initsierar alla UI-komponenter
         self.frame = QWidget(self)
         self.setCentralWidget(self.frame)
-        self.layout = QVBoxLayout()
         self.form_layout = QFormLayout()
         
-        self.resize(325,375)
+        self.resize(450,400)
         
 
         self.nametext = QLabel('namn :',self)
@@ -56,7 +56,12 @@ class Exam(QMainWindow):
         self.fordon.addItem("Car")
         self.fordon.addItem("buss")
         self.fordon.move(115,200)
-        self.fordon.activated.connect(self.aktiverad) 
+        self.fordon.activated.connect(self.aktiverad)
+        
+        self.msgbox = QLineEdit(self)
+        self.form_layout.addRow('färg: ', self.name)
+        self.msgbox.move(250,50)
+        self.msgbox.resize(150,300)
         #self.led.returnPressed.connect()
         
    #def aktiverad(self):
@@ -77,11 +82,11 @@ class Exam(QMainWindow):
         self.btn_clear.clicked.connect(self.clear)
           
     def aktiverad(self):
-        self.fordon2 = QComboBox(self)
-        self.fordon2.addItem("Välj fordon:")
-        self.fordon2.addItem("Bil")
-        self.fordon2.addItem("buss")
-        self.fordon2.move(30,30)
+        self.test = QComboBox(self)
+        self.test.addItem("Välj fordon:")
+        self.test.addItem("Bil")
+        self.test.addItem("buss")
+        self.test.move(30,30)
         self.colortext.move(10,10)
         print("TEST")
         self.update()
